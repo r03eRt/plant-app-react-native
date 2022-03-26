@@ -1,0 +1,11 @@
+{
+  "expo": {
+    "name": "plant-app-react-native",
+    "slug": "plant-app-react-native",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  },
+  "name": "plant-app-react-native"
+}
