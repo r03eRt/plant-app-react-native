@@ -21,16 +21,14 @@ export const App = () => {
     return (
         <NavigationContainer theme={theme}>
             <Stack.Navigator
-                screenOptions={{
-                    headerShown: false
-                }}
+                screenOptions={{ headerShown: false }}
                 initialRouteName={'Home'}
             >
                 {/* Tabs */}
-                <Stack.Screen name="Home" component={Tabs} />
+                <Stack.Screen name="Home" component={Tabs} screenOptions={{ headerShown: false }}/>
 
                 {/* Screens */}
-                <Stack.Screen name="PlantDetail" component={PlantDetail} options={{ headerShown: false }} />
+                <Stack.Screen name="PlantDetail" component={PlantDetail} screenOptions={{ headerShown: false }} />
             </Stack.Navigator>
         </NavigationContainer>
     );

@@ -9,7 +9,9 @@ import { COLORS } from "../constants";
 const Tab = createBottomTabNavigator();
 
 const tabOptions = {
+    headerShown: false,
     showLabel: false,
+    title: '',
     style: {
         height: "10%",
     },
@@ -43,8 +45,8 @@ export const Tabs = () => {
 
     return (
         <Tab.Navigator
-            screenOptions={tabOptions}
             screenOptions={({ route }) => ({
+                ...tabOptions,
                 tabBarIcon: ({ focused }) => {
                     const tintColor = focused ? COLORS.primary : COLORS.gray;
 
