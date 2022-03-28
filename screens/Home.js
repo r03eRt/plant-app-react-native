@@ -8,13 +8,16 @@ import {
     Image,
     FlatList
 } from 'react-native';
+import { AddedFriend } from '../components/AddedFriend';
+import { NewPlantsSlider } from '../components/NewPlantsSlider';
+import { TodaysShare } from '../components/TodaysShare';
 
 import { images, icons, COLORS, FONTS, SIZES } from '../constants';
 
-export const Home = () => {
+export const Home = ({ navigation }) => {
 
     // DummyDAta
-    const [newPlants, setNewPlants] = useState([
+    const newPlantsList = [
         {
             id: 0,
             name: 'Plant 1',
@@ -45,103 +48,44 @@ export const Home = () => {
             image: images.plant5,
             favourite: false
         }
-    ]);
+    ];
 
-    // Rebder new plants
-    function renderNewPlants(item, index) {
+    const addedFriendList = [
+        {
+            id: 0,
+            img: images.profile1
+        },
+        {
+            id: 1,
+            img: images.profile2
+        },
+        {
+            id: 2,
+            img: images.profile3
+        },
+        // {
+        //     id: 3,
+        //     img: images.profile4
+        // },
+        // {
+        //     id: 4,
+        //     img: images.profile5
+        // }
+    ];
 
-        return (
-            <View style={{ alignItems: 'center', justifyContent: 'center', marginHorizontal: SIZES.base }}>
-                <Image 
-                    source={item.image}
-                    resizeMode="cover"
-                    style={{
-                        width: SIZES.width * 0.23,
-                        height: '82%',
-                        borderRadius: 15
-                    }} 
-                />
-                <View style={{
-                    position: 'absolute',
-                    bottom: '17%',
-                    right: 0,
-                    backgroundColor: COLORS.primary,
-                    paddingHorizontal: SIZES.base,
-                    borderTopLeftRadius: 10,
-                    borderBottomLeftRadius: 10
-                }}>
-                    <Text style={{ color: COLORS.white, ...FONTS.body4 }}>{ item.name }</Text>
-                </View>
-
-                <TouchableOpacity
-                    style={{
-                        position: 'absolute',
-                        top: '15%',
-                        left: 7
-                    }}
-                    onPress={() => console.log('Favourite Presed') }
-                >
-                    <Image
-                        source={item.favourite ? icons.heartRed : icons.heartGreenOutline }
-                        resizeMode="contain"
-                        style={{
-                            width: 20,
-                            height: 20
-                        }}
-                    />
-                </TouchableOpacity>
-            </View>
-        );
-    }
 
     return (
         <View style={styles.container}>
             {/** new plants */}
-            <View style={{
-                height: '30%',
-                backgroundColor: COLORS.white,
-                width: '100%',
-            }}>
-                <View style={{
-                    flex: 1,
-                    borderBottomLeftRadius: 50,
-                    borderBottomRightRadius: 50,
-                    backgroundColor: COLORS.primary
-                }}>
-                    <View style={{ marginTop: SIZES.padding * 2, marginHorizontal: SIZES.padding }}>
-                        <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
-                            <Text style={{ color: COLORS.white, ...FONTS.h2 }}>New Plants</Text>
-                            <TouchableOpacity
-                                onPress={ () => console.log('Focus on passsword') }
-                            >
-                                <Image
-                                    source={icons.focus}
-                                    resizeMode="contain"
-                                    style={{
-                                        width: 20,
-                                        height: 20
-                                    }}
-                                />
-                            </TouchableOpacity>
-                        </View>
-                        <View style={{ marginTop: SIZES.base }}>
-                            <FlatList
-                                horizontal
-                                showsHorizontalScrollIndicator={false}
-                                data={newPlants}
-                                keyExtractor={item => item.id.toString()}
-                                renderItem={({ item, index }) => renderNewPlants(item, index) }
-                            />
-                        </View>
-                    </View>
-                </View>
-            </View>
+
+            <NewPlantsSlider newPlantsList={newPlantsList} navigation={ navigation }/>
             
             {/** Todays share */}
-            <View style={{ height: '50%', backgroundColor: COLORS.lightGray }}></View>
+            <TodaysShare navigation={ navigation }/>
+            
             
             {/** Added Friend */}
-            <View style={{ height: '50%', backgroundColor: COLORS.lightGray }}></View>
+            <AddedFriend addedFriendList={addedFriendList} navigation={ navigation }/>            
 
         </View>
     );
