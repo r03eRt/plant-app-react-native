@@ -17,7 +17,7 @@ export const PlantDetail = ({ navigation }) => {
     return (
         <View style={styles.container}>
             {/** Banner Photo */}
-            <View style={{ height: '35%', backgroundColor: 'red' }}>
+            <View style={{ height: '35%' }}>
                 <Image
                     source={images.bannerBg}
                     resizeMode="cover"
